@@ -1,4 +1,4 @@
-#BLACKJACK(Single Player)
+# BLACKJACK(Single Player)
 
 
 HELLO !!  and welcome to my repository.
