@@ -1,7 +1,7 @@
-'''
-A Single Player BlackJack Game Module 
+"""
+A Single Player BlackJack Game Module
 Made By:- Ashutosh Muley
-'''
+"""
 
 import random
 import os
@@ -12,15 +12,15 @@ os.system('clear')
 suits = ("Hearts", "Diamonds", "Spades", "Clubs")
 ranks = ("Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
          "Nine", "Ten", "Jack", "Queen", "King", "Ace")
-values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8,
-          'Nine':9, 'Ten':10, 'Jack':10, 'Queen':10, 'King':10, 'Ace': 11}
-
+values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8,
+          'Nine': 9, 'Ten': 10, 'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11}
 
 
 class Card:
-    '''
+    """
     A Class to define a single card object
-    '''
+    """
+
     def __init__(self, suit, rank):
         self.suit = suit
         self.rank = rank
@@ -34,9 +34,10 @@ class Card:
 
 
 class Deck:
-    '''
+    """
     A class to define a deck of 52 card objects
-    '''
+    """
+
     def __init__(self):
         self.deck = []  # start with an empty list
         for suit in suits:
@@ -50,6 +51,7 @@ class Deck:
             deck_string += str(card) + "\n"
 
         return "The Deck Has: \n" + deck_string
+
     def shuffle(self):
         '''
         Shuffle the deck
@@ -61,19 +63,20 @@ class Deck:
         deal a single card to player's hand
         '''
         return self.deck.pop()
+
     def __len__(self):
         return len(self.deck)
-
 
 
 class Hand:
     '''
     A class to define a player's hand with cards
     '''
+
     def __init__(self):
         self.cards = []  # start with an empty list as we did in the Deck class
-        self.value = 0   # start with zero value
-        self.aces = 0    # add an attribute to keep track of aces
+        self.value = 0  # start with zero value
+        self.aces = 0  # add an attribute to keep track of aces
 
     def add_card(self, card):
         '''
@@ -97,6 +100,7 @@ class Chips:
     '''
     A class to control the bets and total no. of chips
     '''
+
     def __init__(self):
         self.total = 1000
         self.bet = 0
@@ -130,11 +134,10 @@ def take_bet(mychips):
                 print("Invalid Amount Entered!! Enter a Positive Integer")
             elif mychips.bet == 0:
                 print("You can't bet 0!!! You need to bet something!!!")
-            elif  mychips.bet <= mychips.total:
+            elif mychips.bet <= mychips.total:
                 break
             else:
                 print(f"You dont have enough Chips!! You have {chips.total}")
-
 
 
 def hit(mydeck, hand):
@@ -151,7 +154,7 @@ def hit_or_stand(mydeck, hand):
     A function to allow user to Make a move Hit or stand.
     input: deck, hand
     '''
-    play = True # to control an upcoming while loop
+    play = True  # to control an upcoming while loop
 
     while True:
         try:
@@ -170,6 +173,7 @@ def hit_or_stand(mydeck, hand):
             break
     return play
 
+
 def show_some(playerh, dealerh):
     '''
     function to show some details of player's and dealer's hand(one card hidden)
@@ -179,12 +183,13 @@ def show_some(playerh, dealerh):
     print("\nDEALER's HAND:")
     print(dealerh.cards[1])
     print("*one card hidden*")
-    #print("Value of Dealer: ", dealer.value)
+    # print("Value of Dealer: ", dealer.value)
     print("\n")
     print("PLAYER's HAND: ")
     for card in playerh.cards:
         print(card)
     print("Value of Player: ", playerh.value)
+
 
 def show_all(playerh, dealerh):
     '''
@@ -210,12 +215,14 @@ def player_busts(mychips):
     print("DEALER WINS!!!____PLAYER BUSTED!!!")
     mychips.lose_bet()
 
+
 def player_wins(mychips):
     '''
     called when player wins the bet
     '''
     print("PLAYER WINS!!!")
     mychips.win_bet()
+
 
 def dealer_busts(mychips):
     '''
@@ -239,8 +246,9 @@ def push():
     '''
     print("PLAYER AND DEALER HAVE A TIE!!\n PUSH!!!")
 
+
 if __name__ == "__main__":
-     # Print an opening statement
+    # Print an opening statement
     print("HELLO!!! WELCOME TO BLACKJACK!!!")
     # Set up the Player's chips
     chips = Chips()
@@ -328,7 +336,6 @@ if __name__ == "__main__":
             if chips.total == 0:
                 print("You are broke!! Resetting Chips....")
                 time.sleep(1.5)
-
 
             chips.total = 1000
             ROUNDS_COUNT = 1
